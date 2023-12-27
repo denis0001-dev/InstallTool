@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo gpasswd -a $USER plugdev
 case $(lsb_release -i -s) in
   "Ubuntu")
     sudo add-apt-repository ppa:openrazer/stable
