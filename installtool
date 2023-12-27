@@ -31,3 +31,4 @@ exit 0
 else
 echo "Installation failed with error code $?."
 fi
+rm install.sh
