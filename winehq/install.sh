@@ -25,13 +25,13 @@ echo "Installing Wine..."
 result=$(dialog --menu "Choose the WineHQ branch:" 12 45 25 1 "Stable" 2 "Staging" 3 "Development" 2>&1 1>&3)
 case result in
   1)
-    apt install --install-recommends winehq-stable
+    apt install -y --install-recommends winehq-stable
     ;;
   2)
-    apt install --install-recommends winehq-devel
+    apt install -y --install-recommends winehq-devel
     ;;
   3)
-    apt install --install-recommends winehq-staging
+    apt install -y --install-recommends winehq-staging
     ;;
   *)
     echo "Cancelled installation."
