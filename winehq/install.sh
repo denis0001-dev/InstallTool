@@ -24,7 +24,7 @@ apt update
 echo "Installing Wine..."
 exec 3>&1
 result=$(dialog --menu "Choose the WineHQ branch:" 12 45 25 1 "Stable" 2 "Staging" 3 "Development" 2>&1 1>&3)
-case result in
+case $result in
   1)
     apt install -y --install-recommends winehq-stable
     ;;
