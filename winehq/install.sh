@@ -30,12 +30,15 @@ do
     1)
       lock=false
       apt install --install-recommends winehq-stable
+      ;;
     2)
       lock=false
       apt install --install-recommends winehq-devel
+      ;;
     3)
       lock=false
       apt install --install-recommends winehq-staging
+      ;;
     *)
       lock=true
 done
