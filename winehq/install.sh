@@ -41,4 +41,5 @@ do
       ;;
     *)
       lock=true
+  esac
 done
