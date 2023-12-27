@@ -1,0 +1,33 @@
+#!/bin/bash
+# Root use check
+if [[ $(whoami) -ne "root" ]]
+then
+echo "Error: you must be root to run this command"
+exit 1
+fi
+# Non-empty argument check
+if [[ $1 -eq "" ]]
+then
+echo "Error: you must provide an argument."
+exit 1
+fi
+# Downloading the install script
+wget https://raw.githubusercontent.com/denis0001-dev/InstallTool/main/$1/install.sh
+# Checking for error 404
+if [[ $? -eq 8 ]]
+then
+echo "Error: installation script not found."
+exit 1
+fi
+# Making install script executable
+chmod +x install.sh
+# Executing the script
+./install.sh
+# Script sucessful run check
+if [[ $? -eq 0 ]]
+then
+echo "Sucessfully installed $1."
+exit 0
+else
+echo "Installation failed with error code $?."
+fi
