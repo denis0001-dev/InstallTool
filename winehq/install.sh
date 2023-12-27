@@ -22,24 +22,20 @@ esac
 echo "Updating the package information..."
 apt update
 echo "Installing Wine..."
-lock=true
-while lock
-do
-  result=$(dialog --menu "Choose the WineHQ branch:" 12 45 25 1 "Stable" 2 "Staging" 3 "Development" 2>&1 1>&3)
-  case result in
-    1)
-      lock=false
-      apt install --install-recommends winehq-stable
-      ;;
-    2)
-      lock=false
-      apt install --install-recommends winehq-devel
-      ;;
-    3)
-      lock=false
-      apt install --install-recommends winehq-staging
-      ;;
-    *)
-      lock=true
-  esac
-done
+result=$(dialog --menu "Choose the WineHQ branch:" 12 45 25 1 "Stable" 2 "Staging" 3 "Development" 2>&1 1>&3)
+case result in
+  1)
+    lock=false
+    apt install --install-recommends winehq-stable
+    ;;
+  2)
+    lock=false
+    apt install --install-recommends winehq-devel
+    ;;
+  3)
+    lock=false
+    apt install --install-recommends winehq-staging
+    ;;
+  *)
+    lock=true
+esac
