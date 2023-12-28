@@ -1,6 +1,4 @@
 #!/bin/bash
-# Setting a global user variable for some scripts
-export CURRENT_USER=$SUDO_USER
 # Root user check
 if [[ $(whoami) -ne "root" ]]
 then
