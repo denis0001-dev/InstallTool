@@ -21,7 +21,7 @@ mkdir ~/AppImages
 cp $file_path ~/AppImages/$file_name
 # Generating the desktop file
 echo "Generating the desktop file..."
-desktopfile=$(find . -type f -name '*.desktop')
+desktopfile=$(basename $(find . -type f -name '*.desktop'))
 source <(grep = $desktopfile | tr -d ' ')
 echo "[Desktop Entry]" >> /usr/share/applications/$desktopfile
 echo "Name=$Name" >> /usr/share/applications/$desktopfile
