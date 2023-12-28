@@ -6,7 +6,7 @@ echo "Error: you must be root to run this command"
 exit 1
 fi
 # Non-empty argument check
-if [[ $1 -eq "" ]]
+if [[ $1 = "" ]]
 then
 echo "Error: you must provide an argument."
 exit 1
