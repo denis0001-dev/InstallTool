@@ -22,7 +22,7 @@ fi
 # Making install script executable
 chmod +x install.sh
 # Executing the script
-./install.sh
+./install.sh $2
 # Script sucessful run check
 if [[ $? -eq 0 ]]
 then
