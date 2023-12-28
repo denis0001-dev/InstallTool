@@ -1,5 +1,6 @@
 #!/bin/bash
 # Root use check
+export CURRENT_USER=$USER
 if [[ $(whoami) -ne "root" ]]
 then
 echo "Error: you must be root to run this command"
