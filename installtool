@@ -1,6 +1,6 @@
-#!/bin/bash
+U#!/bin/bash
 # Root user check
-if [[ $(whoami) -ne "root" ]]
+if [[ $EUID -ne 0 ]]
 then
 echo "Error: you must be root to run this command"
 exit 1
