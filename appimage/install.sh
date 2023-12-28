@@ -12,6 +12,7 @@ file_name=$(basename $1)
 echo "Extracting the AppImage to the temporary folder..."
 mkdir /tmp/appimage-install
 cd /tmp/appimage-install
+chmod +x $file_path
 $file_path --appimage-extract 1>/dev/null
 cd ./squashfs-root
 # Copying the AppImage to the installation dir
