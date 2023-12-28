@@ -24,13 +24,13 @@ echo "Generating the desktop file..."
 desktopfile=$(basename $(find . -type f -name '*.desktop'))
 source <(grep = $desktopfile | tr -d ' ')
 echo "[Desktop Entry]" >> /usr/share/applications/$desktopfile
-echo "Name=$Name" >> /usr/share/applications/$desktopfile
+echo $(cat ./$desktopfile | grep 'Name=') >> /usr/share/applications/$desktopfile
 echo "Exec=sh -c ~/AppImages/$file_name" >> /usr/share/applications/$desktopfile
 echo "Terminal=false" >> /usr/share/applications/$desktopfile
 echo "Type=Application" >> /usr/share/applications/$desktopfile
 echo "Icon=$Icon" >> /usr/share/applications/$desktopfile
 echo "StartupWMClass=$StartupWMClass" >> /usr/share/applications/$desktopfile
-echo "Comment=$Comment" >> /usr/share/applications/$desktopfile
+echo $(cat ./$desktopfile | grep 'Comment=') >> /usr/share/applications/$desktopfile
 echo "Categories=$Categories" >> /usr/share/applications/$desktopfile
 # Generating the uninstall script
 mkdir ~/AppImages/uninstall
