@@ -6,8 +6,14 @@ else
   echo "Error: the provided file is not an AppImage."
   exit 1
 fi
+if [[ $(env | grep SUDO_USER) = "SUDO_USER=root" ]]
+then
+  echo "Error: root user is not supported! Use sudo installtool appimage ... instead."
+  exit 1
+fi
 file_path=$(realpath $1)
 file_name=$(basename $1)
+home_path=$(realpath ~)
 # Making the temporary installation dir
 echo "Extracting the AppImage to the temporary folder..."
 mkdir /tmp/appimage-install
@@ -34,13 +40,13 @@ echo $(cat ./$desktopfile | grep 'Comment=') >> /usr/share/applications/$desktop
 echo "Categories=$Categories" >> /usr/share/applications/$desktopfile
 # Generating the uninstall script
 mkdir ~/AppImages/uninstall
-echo "#!/bin/bash" >> ~/AppImages/uninstall/$Name.sh
-echo "# Uninstall script for $Name." >> ~/AppImages/uninstall/$Name.sh
-echo "if [ "$EUID" -ne 0 ]" >> ~/AppImages/uninstall/$Name.sh
-echo "then" >> ~/AppImages/uninstall/$Name.sh
-echo "  echo 'Error: you must run this as root.'" >> ~/AppImages/uninstall/$Name.sh
-echo "fi" >> ~/AppImages/uninstall/$Name.sh
-echo "rm /usr/share/applications/$desktopfile" >> ~/AppImages/uninstall/$Name.sh
-echo "rm ~/AppImages/$file_name" >> ~/AppImages/uninstall/$Name.sh
-echo "rm ~/AppImages/uninstall/$Name.sh" >> ~/AppImages/uninstall/$Name.sh
-echo "echo 'Done.'" >> ~/AppImages/uninstall/$Name.sh
+echo "#!/bin/bash" >> $home_path/AppImages/uninstall/$Name.sh
+echo "# Uninstall script for $Name." >> $home_path/AppImages/uninstall/$Name.sh
+echo 'if [ "$EUID" -ne 0 ]' >> $home_path/AppImages/uninstall/$Name.sh
+echo "then" >> $home_path/AppImages/uninstall/$Name.sh
+echo "  echo 'Error: you must run this as root.'" >> $home_path/AppImages/uninstall/$Name.sh
+echo "fi" >> $home_path/AppImages/uninstall/$Name.sh
+echo "rm /usr/share/applications/$desktopfile" >> $home_path/AppImages/uninstall/$Name.sh
+echo "rm ~/AppImages/$file_name" >> $home_path/AppImages/uninstall/$Name.sh
+echo "rm ~/AppImages/uninstall/$Name.sh" >> $home_path/AppImages/uninstall/$Name.sh
+echo "echo 'Done.'" >> $home_path/AppImages/uninstall/$Name.sh
