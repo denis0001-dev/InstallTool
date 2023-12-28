@@ -13,7 +13,7 @@ then
 fi
 file_path=$(realpath $1)
 file_name=$(basename $1)
-home_path="/home/$(echo $(sudo env | grep SUDO_USER) | sed 's/SUDO_USER=//')"
+home_path="/home/$(echo $(env | grep SUDO_USER) | sed 's/SUDO_USER=//')"
 # Making the temporary installation dir
 echo "Extracting the AppImage to the temporary folder..."
 mkdir /tmp/appimage-install
