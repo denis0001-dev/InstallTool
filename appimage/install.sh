@@ -23,8 +23,8 @@ $file_path --appimage-extract 1>/dev/null
 cd ./squashfs-root
 # Copying the AppImage to the installation dir
 echo "Copying the AppImage to the installation dir..."
-mkdir ~/AppImages
-cp $file_path ~/AppImages/$file_name
+mkdir $home_path/AppImages
+cp $file_path $home_path/AppImages/$file_name
 # Generating the desktop file
 echo "Generating the desktop file..."
 desktopfile=$(basename $(find . -type f -name '*.desktop'))
@@ -39,7 +39,7 @@ echo "StartupWMClass=$StartupWMClass" >> /usr/share/applications/$desktopfile
 echo $(cat ./$desktopfile | grep 'Comment=') >> /usr/share/applications/$desktopfile
 echo "Categories=$Categories" >> /usr/share/applications/$desktopfile
 # Generating the uninstall script
-mkdir ~/AppImages/uninstall
+mkdir $home_path/AppImages/uninstall
 echo "#!/bin/bash" >> $home_path/AppImages/uninstall/$Name.sh
 echo "# Uninstall script for $Name." >> $home_path/AppImages/uninstall/$Name.sh
 echo 'if [ "$EUID" -ne 0 ]' >> $home_path/AppImages/uninstall/$Name.sh
@@ -47,6 +47,6 @@ echo "then" >> $home_path/AppImages/uninstall/$Name.sh
 echo "  echo 'Error: you must run this as root.'" >> $home_path/AppImages/uninstall/$Name.sh
 echo "fi" >> $home_path/AppImages/uninstall/$Name.sh
 echo "rm /usr/share/applications/$desktopfile" >> $home_path/AppImages/uninstall/$Name.sh
-echo "rm ~/AppImages/$file_name" >> $home_path/AppImages/uninstall/$Name.sh
-echo "rm ~/AppImages/uninstall/$Name.sh" >> $home_path/AppImages/uninstall/$Name.sh
+echo "rm $home_path/AppImages/$file_name" >> $home_path/AppImages/uninstall/$Name.sh
+echo "rm $home_path/AppImages/uninstall/$Name.sh" >> $home_path/AppImages/uninstall/$Name.sh
 echo "echo 'Done.'" >> $home_path/AppImages/uninstall/$Name.sh
