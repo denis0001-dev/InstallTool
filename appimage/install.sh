@@ -50,3 +50,4 @@ echo "rm /usr/share/applications/$desktopfile" >> $home_path/AppImages/uninstall
 echo "rm $home_path/AppImages/$file_name" >> $home_path/AppImages/uninstall/$Name.sh
 echo "rm $home_path/AppImages/uninstall/$Name.sh" >> $home_path/AppImages/uninstall/$Name.sh
 echo "echo 'Done.'" >> $home_path/AppImages/uninstall/$Name.sh
+rm -rf /tmp/appimage_install
