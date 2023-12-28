@@ -1,6 +1,7 @@
 #!/bin/bash
-# Root use check
+# Setting a global user variable for some scripts
 export CURRENT_USER=$USER
+# Root user check
 if [[ $(whoami) -ne "root" ]]
 then
 echo "Error: you must be root to run this command"
