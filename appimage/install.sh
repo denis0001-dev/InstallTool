@@ -45,8 +45,7 @@ echo "DESKTOPFILE: $desktopfile"
 source <(grep = $desktopfile | tr -d ' ') &>/dev/null
 # Copying the icon
 cd ..
-echo "ICONPATH: $(find -L . -type f -wholename "./squashfs-root/$Icon*" -maxdepth 1)"
-icon_path=$(realpath $(find -L . -type f -wholename "./squashfs-root/$Icon*" -maxdepth 1 | grep -e '.png' -e '.svg')) 1>/dev/null
+icon_path=$(realpath $(find -L . -type f -wholename "./squashfs-root/$Icon*" | grep -e '.png' -e '.svg')) 1>/dev/null
 mkdir $home_path/AppImages/icons 2>/dev/null
 cp $icon_path $home_path/AppImages/icons/$(basename $icon_path)
 cd squashfs-root
