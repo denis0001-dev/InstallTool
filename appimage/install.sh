@@ -56,7 +56,7 @@ echo "StartupWMClass=$StartupWMClass" >> /usr/share/applications/$desktopfile
 echo $(cat ./$desktopfile | grep 'Comment=') >> /usr/share/applications/$desktopfile
 echo "Categories=$Categories" >> /usr/share/applications/$desktopfile
 # Generating the uninstall script
-mkdir $home_path/AppImages/uninstall
+mkdir $home_path/AppImages/uninstall &>/dev/null
 echo "#!/bin/bash" >> $home_path/AppImages/uninstall/$Name.sh
 echo "# Uninstall script for $Name." >> $home_path/AppImages/uninstall/$Name.sh
 echo 'if [ "$EUID" -ne 0 ]' >> $home_path/AppImages/uninstall/$Name.sh
