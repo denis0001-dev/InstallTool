@@ -23,6 +23,8 @@ then
   echo "Error: home path doesn't exist, try again with sudo."
   exit 1
 fi
+# Clearing temporary files
+rm -rf /tmp/appimage-install
 # Making the temporary installation dir
 echo "Extracting the AppImage to the temporary folder..."
 mkdir /tmp/appimage-install
@@ -37,7 +39,6 @@ cp $file_path $home_path/AppImages/$file_name
 
 # Generating the desktop file
 echo "Generating the desktop file..."
-echo "basename $(find . -type f -name '*.desktop')"
 desktopfile=$(basename $(find . -type f -name '*.desktop'))
 source <(grep = $desktopfile | tr -d ' ')
 # Copying the icon
