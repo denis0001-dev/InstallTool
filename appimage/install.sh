@@ -14,10 +14,14 @@ then
   exit 1
 fi
 # Variables
-
 file_path=$(realpath $1)
 file_name=$(basename $1)
 home_path="/home/$(echo $(env | grep SUDO_USER) | sed 's/SUDO_USER=//')"
+if ! [[ -e $home_path ]]
+then
+  echo "Error: home path doesn't exist, try again with sudo."
+  exit 1
+fi
 # Making the temporary installation dir
 echo "Extracting the AppImage to the temporary folder..."
 mkdir /tmp/appimage-install
