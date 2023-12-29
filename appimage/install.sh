@@ -14,11 +14,10 @@ then
   exit 1
 fi
 # Variables
-source <(grep = $desktopfile | tr -d ' ')
+
 file_path=$(realpath $1)
 file_name=$(basename $1)
 home_path="/home/$(echo $(env | grep SUDO_USER) | sed 's/SUDO_USER=//')"
-icon_path=$(realpath $(find -L . -type f -wholename "./squashfs-root/$Icon*" | grep -e '.png' -e '.svg'))
 # Making the temporary installation dir
 echo "Extracting the AppImage to the temporary folder..."
 mkdir /tmp/appimage-install
@@ -30,12 +29,16 @@ cd ./squashfs-root
 echo "Copying the AppImage to the installation dir..."
 mkdir $home_path/AppImages
 cp $file_path $home_path/AppImages/$file_name
-# Copying the icon
-mkdir $home_path/AppImages/icons
-cp $icon_path $home_path/AppImages/icons/$(basename $icon_path)
+
 # Generating the desktop file
 echo "Generating the desktop file..."
 desktopfile=$(basename $(find . -type f -name '*.desktop'))
+source <(grep = $desktopfile | tr -d ' ')
+# Copying the icon
+cd ..
+icon_path=$(realpath $(find -L . -type f -wholename "./squashfs-root/$Icon*" | grep -e '.png' -e '.svg'))
+mkdir $home_path/AppImages/icons
+cp $icon_path $home_path/AppImages/icons/$(basename $icon_path)
 echo "[Desktop Entry]" >> /usr/share/applications/$desktopfile
 echo $(cat ./$desktopfile | grep 'Name=') >> /usr/share/applications/$desktopfile
 echo "Exec=sh -c $home_path/AppImages/$file_name" >> /usr/share/applications/$desktopfile
