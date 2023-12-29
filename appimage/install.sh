@@ -27,24 +27,24 @@ fi
 rm -rf /tmp/appimage-install
 # Making the temporary installation dir
 echo "Extracting the AppImage to the temporary folder..."
-mkdir /tmp/appimage-install 1>/dev/null
+mkdir /tmp/appimage-install 2>/dev/null
 cd /tmp/appimage-install
 chmod +x $file_path
 $file_path --appimage-extract 1>/dev/null
 cd ./squashfs-root
 # Copying the AppImage to the installation dir
 echo "Copying the AppImage to the installation dir..."
-mkdir $home_path/AppImages 1>/dev/null
+mkdir $home_path/AppImages 2>/dev/null
 cp $file_path $home_path/AppImages/$file_name
 
 # Generating the desktop file
 echo "Generating the desktop file..."
-desktopfile=$(basename $(find -maxdepth 1 . -type f -name '*.desktop'))
+desktopfile=$(basename $(find . -type f -name '*.desktop' -maxdepth 1))
 source <(grep = $desktopfile | tr -d ' ') &>/dev/null
 # Copying the icon
 cd ..
-icon_path=$(realpath $(find -L -maxdepth 1 . -type f -wholename "./squashfs-root/$Icon*" | grep -e '.png' -e '.svg'))
-mkdir $home_path/AppImages/icons 1>/dev/null
+icon_path=$(realpath $(find -L . -type f -wholename "./squashfs-root/$Icon*" -maxdepth 1 | grep -e '.png' -e '.svg')) 1>/dev/null
+mkdir $home_path/AppImages/icons 2>/dev/null
 cp $icon_path $home_path/AppImages/icons/$(basename $icon_path)
 cd squashfs-root
 echo "[Desktop Entry]" >> /usr/share/applications/$desktopfile
