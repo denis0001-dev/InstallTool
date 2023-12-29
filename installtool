@@ -11,6 +11,15 @@ then
 echo "Error: you must provide an argument."
 exit 1
 fi
+if [[ $1 = "--update" ]]
+then
+  echo "Downloading the latest version of InstallTool..."
+  rm $(realpath $0)
+  wget -q https://https://raw.githubusercontent.com/denis0001-dev/InstallTool/main/installtool
+  chmod +x $(realpath $0)
+  echo "Sucessfully updated InstallTool to the latest version."
+  exit 0
+fi
 # Downloading the install script
 wget -q https://raw.githubusercontent.com/denis0001-dev/InstallTool/main/$1/install.sh
 # Checking for error 404
