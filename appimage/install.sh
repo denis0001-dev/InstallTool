@@ -39,7 +39,9 @@ cp $file_path $home_path/AppImages/$file_name
 
 # Generating the desktop file
 echo "Generating the desktop file..."
+echo "FIND: $(find . -type f -name '*.desktop' -maxdepth 1)"
 desktopfile=$(basename $(find . -type f -name '*.desktop' -maxdepth 1))
+echo "DESKTOPFILE: $desktopfile"
 source <(grep = $desktopfile | tr -d ' ') &>/dev/null
 # Copying the icon
 cd ..
