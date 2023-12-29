@@ -12,7 +12,7 @@ echo "Error: you must provide an argument."
 exit 1
 fi
 # Downloading the install script
-wget https://raw.githubusercontent.com/denis0001-dev/InstallTool/main/$1/install.sh 1>/dev/null
+wget -q https://raw.githubusercontent.com/denis0001-dev/InstallTool/main/$1/install.sh
 # Checking for error 404
 if [[ $? -eq 8 ]]
 then
