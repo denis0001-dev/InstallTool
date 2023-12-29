@@ -17,6 +17,7 @@ fi
 file_path=$(realpath $1)
 file_name=$(basename $1)
 home_path="/home/$(echo $(env | grep SUDO_USER) | sed 's/SUDO_USER=//')"
+echo "HOME PATH: $home_path"
 if [[ $home_path = "/home/" ]]
 then
   echo "Error: home path doesn't exist, try again with sudo."
