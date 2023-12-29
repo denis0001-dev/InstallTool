@@ -39,6 +39,7 @@ cd ..
 icon_path=$(realpath $(find -L . -type f -wholename "./squashfs-root/$Icon*" | grep -e '.png' -e '.svg'))
 mkdir $home_path/AppImages/icons
 cp $icon_path $home_path/AppImages/icons/$(basename $icon_path)
+cd squashfs-root
 echo "[Desktop Entry]" >> /usr/share/applications/$desktopfile
 echo $(cat ./$desktopfile | grep 'Name=') >> /usr/share/applications/$desktopfile
 echo "Exec=sh -c $home_path/AppImages/$file_name" >> /usr/share/applications/$desktopfile
