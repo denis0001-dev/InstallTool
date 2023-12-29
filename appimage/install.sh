@@ -67,4 +67,5 @@ echo "rm $home_path/AppImages/$file_name" >> $home_path/AppImages/uninstall/$Nam
 echo "rm $home_path/AppImages/uninstall/$Name.sh" >> $home_path/AppImages/uninstall/$Name.sh
 echo "rm $home_path/AppImages/icons/$(basename $icon_path)" >> $home_path/AppImages/uninstall/$Name.sh
 echo "echo 'Done.'" >> $home_path/AppImages/uninstall/$Name.sh
+chmod +x $home_path/AppImages/uninstall/$Name.sh
 rm -rf /tmp/appimage_install
