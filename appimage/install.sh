@@ -5,12 +5,15 @@ then
 echo "This file is an AppImage"
 else
 failappimage = true
+echo "Error: This file is not an AppImage."
 fi
 if [[ -e $1 ]]
 then
 echo "File exists."
 else
 failexist = true
+echo "This file doesn't exist."
+fi
 if [[ $failexist = true ]] && [[ $failappimage = true ]]
 then
   echo "Error: the provided file is not an AppImage."
