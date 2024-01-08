@@ -1,9 +1,18 @@
 #!/bin/bash
 # Checking that the specified file exists and it's an AppImage
-if [[ $1 == *.AppImage ]] && [[ -e $1 ]]
+if [[ $1 == *.AppImage ]]
 then
-  &>/dev/null
+echo "This file is an AppImage"
 else
+failappimage = true
+fi
+if [[ -e $1 ]]
+then
+echo "File exists."
+else
+failexist = true
+if [[ $failexist = true ]] && [[ $failappimage = true ]]
+then
   echo "Error: the provided file is not an AppImage."
   exit 1
 fi
